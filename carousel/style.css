@@ -1,0 +1,99 @@
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+} */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #000000;
+}
+:root {
+  --primary-color: #373746;
+  --brand-color: #c204fc;
+}
+.carousel {
+  width: 90%;
+  overflow-x: auto;
+  display: flex;
+  gap: 1em;
+  margin: 3em auto;
+  scroll-behavior: smooth;
+  anchor-name: --carousel;
+  scroll-snap-type: x mandatory;
+  scroll-marker-group: after;
+  /* padding: 1em; */
+}
+
+.carousel::scroll-marker-group {
+  display: flex;
+  justify-content: center;
+  gap: 0.5em;
+}
+
+.card::scroll-marker {
+  content: "";
+  height: 1em;
+  width: 1em;
+  background-color: var(--primary-color);
+  border-radius: 0.5em;
+}
+
+.card::scroll-marker:target-current {
+  background-color: var(--brand-color);
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel::scroll-button(*) {
+  font-family: "Font Awesome 6 Free";
+  border: none;
+  font-weight: 600;
+  background-color: var(--brand-color);
+  font-size: 2em;
+  color: white;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  padding-bottom: 0.1em;
+  cursor: pointer;
+  position: fixed;
+  position-anchor: --carousel;
+}
+
+.carousel::scroll-button(*):hover,
+.carousel::scroll-button(*):focus {
+  opacity: 0.9;
+}
+
+/* .carousel::scroll-button(*):active {
+  translate: 1px 1px;
+} */
+
+.carousel::scroll-button(*):disabled {
+  opacity: 0.2;
+  cursor: auto;
+}
+
+.carousel::scroll-button(right) {
+  content: "\f105";
+  position-area: right center;
+  translate: -50%;
+}
+.carousel::scroll-button(left) {
+  content: "\f104";
+  position-area: left center;
+  translate: 50%;
+}
+
+.card {
+  scroll-snap-align: start;
+  flex: 0 0 20em;
+  height: 12em;
+  background-color: var(--primary-color);
+  padding: 1em;
+  border-radius: 0.5em;
+  text-align: center;
+  align-content: center;
+}
